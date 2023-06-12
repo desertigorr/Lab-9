@@ -5,21 +5,41 @@
     <title>Main page</title>
 </head>
 <body>
-<h2>Messages</h2>
-<form method="post" action="/add_message">
-    <input type="text" name="text">
-    <input type="text" name="tag">
-    <button type="submit">Add post</button>
-</form>
 
-<h3>Messages feed</h3>
-{% for message in messages %}
-<div>{{ message.text }}
-    {% for tag in message.tags %}
-        <b>#{{ tag.text }}</b>
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #FFE2E2;
+    }
+    .text {
+        color: #AF6161;
+    }
+    .container {
+        margin-left: 25%;
+        border: 2px dashed black;
+        padding: 10px;
+        width: fit-content;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text">Reviews</h2>
+    <form method="post" action="/add_review">
+    <input type="text" name="text" placeholder="Text">
+    <input type="text" name="rate" placeholder="Rate from 1-5">
+    <button type="submit">Add review</button>
+    </form>
+
+    <h3>Reviews feed</h3>
+    {% for review in reviews %}
+    <div>{{ review.text }}
+         {{ review.rate }}
+        {% endfor %}
+    </div>
     {% endfor %}
 </div>
-{% endfor %}
+
+
 
 </body>
 </html>
